@@ -22,7 +22,8 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" id="psw" placeholder="Enter Password" name="psw" required>
     <div id="password-message" style="color: red; margin-top: 5px;"></div>
-
+    <div id="Message" style="margin-top:10px;">
+    </div>
     <button type="login" class="login">Login</button>
     <label>
       <input type="checkbox" name="remember"> Remember me
@@ -35,6 +36,7 @@
     <span class="psw">Forgot <a href="action.html">password?</a></span>
   </div>
 </form>
+
 <script>
   document.querySelector('.login').addEventListener('click', function(event) {
     event.preventDefault();
@@ -42,20 +44,25 @@
     const password = document.getElementById('psw').value;
     const passwordMessage = document.getElementById('password-message');
     passwordMessage.textContent = ''; 
+    const formMessage = document.getElementById('Message');
+    formMessage.textContent = '';
+
     const passwordValid = password.length >= 8;
-    if(!passwordValid){
-        passwordMessage.textContent = "Password must be at least 8 characters long.";
-        return;
-    }
-    if (username && password) {
-      alert('Login successful!');
-      window.location.href = 'action.html';
+
+   
+     if (username && password) {
+     formMessage.textContent = 'Login successful!'; 
     } else if (username){
-      alert('Please enter password.');
+      formMessage.textContent = 'Please enter password.';
     }else if (password) {
-      alert('Please enter username.');
-    } else if(!username && !password) {
-      alert('Please enter both username and password.');
+      formMessage.textContent = 'Please enter username.';
+    }else if (!passwordValid) {
+      passwordMessage.textContent = 'Password must be at least 8 characters long.';
+    } 
+    else if (!username && !password) {
+      formMessage.textContent = 'Please enter both username and password.';
+    } else {
+      passwordMessage.textContent = 'Password must be at least 8 characters long.';
     }
   });
 </script>
