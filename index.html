@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="Stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Game</h1>
+    </header>
+    <form action="action.html" method="get">
+  <div class="imgcontainer">
+    <img src="game.jpeg" alt="game" class="game">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" id="psw" placeholder="Enter Password" name="psw" required>
+    <div id="password-message" style="color: red; margin-top: 5px;"></div>
+
+    <button type="login" class="login">Login</button>
+    <label>
+      <input type="checkbox" name="remember"> Remember me
+    </label><br>
+     <button type="button" class="create-new-account"onclick="window.location.href='create-account.html'">Create New Account</button>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <button type="button" class="clearbtn" onclick="document.getElementById('uname').value = ''; document.getElementById('psw').value = ''">Clear</button>
+    <span class="psw">Forgot <a href="action.html">password?</a></span>
+  </div>
+</form>
+<script>
+  document.querySelector('.login').addEventListener('click', function(event) {
+    event.preventDefault();
+    const username = document.getElementById('uname').value;
+    const password = document.getElementById('psw').value;
+    const passwordMessage = document.getElementById('password-message');
+    passwordMessage.textContent = ''; 
+    const passwordValid = password.length >= 8;
+    if(!passwordValid){
+        passwordMessage.textContent = "Password must be at least 8 characters long.";
+        return;
+    }
+    if (username && password) {
+      alert('Login successful!');
+      window.location.href = 'action.html';
+    } else if (username){
+      alert('Please enter password.');
+    }else if (password) {
+      alert('Please enter username.');
+    } else if(!username && !password) {
+      alert('Please enter both username and password.');
+    }
+  });
+</script>
+<footer>
+    <p>&copy; 2025 Game Company. All rights reserved.</p>
+  </footer>
+</body>
+</html>
